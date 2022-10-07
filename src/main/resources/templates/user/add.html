@@ -2,23 +2,31 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
 <head>
     <meta charset="UTF-8"/>
-    <title>Create User</title>
-    <h1>Create User</h1>
+    <title>Title</title>
+    <link href="../static/css/styles.css" th:href="@{/css/styles.css}" rel="stylesheet" />
 </head>
 <body>
 
-<form>
+<h1>Create User</h1>
+
+
+
+
+<form th:object="${user}" th:action="@{/user/}" id="user-form" role="form" method="post">
+    <div class = "form-group">
     <h2>Username</h2>
     <input type="text" th:field="*{username}" />
 <br>
     <h3>Email Address</h3>
-    <input type="text" th:field="*{email}" />
+    <input type="email" th:field="*{email}" />
 <br>
     <h4>Password</h4>
-    <input type="text" th:field="*{password}" />
+    <input type="password" th:field="*{password}" />
     <br>
     <input type="submit" value="Submit Form"/>
+    </div>
 </form>
+
 
 </body>
 </html>

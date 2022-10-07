@@ -3,7 +3,11 @@ package org.launchcode.spaday.models;
 public class User {
     private String username, email, password;
 
-
+    public User() {
+        this.username = username;
+        this.email = email;
+        this.password = password;
+    }
 
     @Override
     public String toString() {
