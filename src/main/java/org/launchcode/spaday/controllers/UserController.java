@@ -3,36 +3,38 @@ package org.launchcode.spaday.controllers;
 import org.launchcode.spaday.models.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.validation.Valid;
-import java.util.Objects;
 
 @Controller
 @RequestMapping("user")
 public class UserController {
-    @GetMapping("/add")
-    public String displayAddUserForm(Model model) {
-        User user = new User();
-
-        model.addAttribute("user", user);
+    @GetMapping
+    public String displayUser(){
+        return "user/index";
+    }
+    @GetMapping("add")
+    public String displayAddUserForm(Model model){
+        model.addAttribute(new User());
         return "user/add";
     }
 
     @PostMapping("add")
-    public String processAddUserForm(Model model, @ModelAttribute @Valid User user, String verify) {
+    public String processAddUserForm(Model model, @ModelAttribute @Valid User user, Errors errors, String verify) {
         // add form submission handling code here
-        if(Objects.equals(user.getPassword(), verify)){
-
-            return "user/index";
+        model.addAttribute("user" , user);
+        if(errors.hasErrors() || !user.getPassword().equals(verify)){
+            model.addAttribute("errorPass", "Password and Verify Password should match.");
+            return "user/add";
         }
 
-        model.addAttribute("message", "Password verification failed");
-        return "user/add";
-    }
+        return "user/index";
 
+    }
 
 }

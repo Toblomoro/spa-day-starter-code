@@ -4,43 +4,38 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
+
+
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
+
 public class User {
-    @NotBlank(message = "Cannot be left Blank")
-    @Size(min = 5, max = 15)
+    @NotBlank
+    @Size(min=5, max=15, message="Invalid Username! Username should be between 5 and 15 characters long.")
     private String username;
-    @Email
+
+    @NotBlank
+    @Email(message="Invalid email! Enter valid email.")
     private String email;
-    @Size(min = 6, message = "Must be over 6 characters")
-    @NotBlank(message = "Cannot be left Blank")
+
+    @NotBlank
+    @Size(min=6, message="Password is too short. Password should be at least 6 characters long.")
     private String password;
 
-    public User() {
+    public User(){}
+    public User(String username, String email, String password){
         this.username = username;
-        this.email = email;
-        this.password = password;
+        this.email =email;
+        this.password= password;
     }
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "username='" + username + '\'' +
-                ", email='" + email + '\'' +
-                ", password='" + password + '\'' +
-                '}';
-    }
-
-    //getters and setters
-
-
     public String getUsername() {
         return username;
     }
 
-
     public void setUsername(String username) {
         this.username = username;
     }
-
 
     public String getEmail() {
         return email;
