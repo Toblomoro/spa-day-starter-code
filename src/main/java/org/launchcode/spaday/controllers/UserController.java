@@ -5,8 +5,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.validation.Valid;
 import java.util.Objects;
 
 @Controller
@@ -20,7 +22,8 @@ public class UserController {
         return "user/add";
     }
 
-    public String processAddUserForm(Model model, @ModelAttribute User user, String verify) {
+    @PostMapping("add")
+    public String processAddUserForm(Model model, @ModelAttribute @Valid User user, String verify) {
         // add form submission handling code here
         if(Objects.equals(user.getPassword(), verify)){
 

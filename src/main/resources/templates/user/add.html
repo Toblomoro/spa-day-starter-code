@@ -9,20 +9,21 @@
 
 <h1>Create User</h1>
 
-
-
-
 <form th:object="${user}" th:action="@{/user/}" id="user-form" role="form" method="post">
-    <div class = "form-group">
-    <h2>Username</h2>
-    <input type="text" th:field="*{username}" />
-<br>
-    <h3>Email Address</h3>
-    <input type="email" th:field="*{email}" />
-<br>
-    <h4>Password</h4>
-    <input type="password" th:field="*{password}" />
-    <br>
+    <div><label>Username:
+        <input type = 'text' th:field = "${user.username}" th:value="${user.username}">
+    </label></div>
+    <p class="error" th:errors="${user.username}"></p>
+    <div><label>Email:
+        <input type = 'text' th:field = "${user.email}" th:value="${user.email}">
+    </label></div>
+    <p class="error" th:errors="${user.email}"></p>
+    <div><label>Password:
+        <input type = 'password' th:field = "${user.password}">
+    </label></div>
+    <p class="error" th:errors="${user.password}"></p>
+
+    <div>
     <input type="submit" value="Submit Form"/>
     </div>
 </form>
